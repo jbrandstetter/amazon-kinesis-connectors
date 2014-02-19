@@ -70,6 +70,8 @@ public class KinesisConnectorConfiguration {
     public static final String PROP_BUFFER_BYTE_SIZE_LIMIT = "bufferByteSizeLimit";
     public static final String PROP_DYNAMODB_ENDPOINT = "dynamoDBEndpoint";
     public static final String PROP_DYNAMODB_DATA_TABLE_NAME = "dynamoDBDataTableName";
+    public static final String PROP_MONGODB_URI = "mongoDBURI";
+    public static final String PROP_MONGODB_COLLECTION = "mongoDBcollection";
     public static final String PROP_CLOUDWATCH_NAMESPACE = "cloudWatchNamespace";
     public static final String PROP_CLOUDWATCH_BUFFER_TIME = "cloudWatchBufferTime";
     public static final String PROP_CLOUDWATCH_MAX_QUEUE_SIZE = "cloudWatchMaxQueueSize";
@@ -115,6 +117,10 @@ public class KinesisConnectorConfiguration {
     public static final String DEFAULT_DYNAMODB_ENDPOINT = "dynamodb.us-east-1.amazonaws.com";
     public static final String DEFAULT_DYNAMODB_DATA_TABLE_NAME = "dynamodb_emitter_test";
 
+    // Default MongoDB Constants
+    public static final String DEFAULT_MONGODB_URI = "mongodb://localhost/kinesis";
+    public static final String DEFAULT_MONGODB_COLLECTION = "sample";
+
     // Default CloudWatch Constants
     public static final String DEFAULT_CLOUDWATCH_NAMESPACE = DEFAULT_APP_NAME;
     public static final long DEFAULT_CLOUDWATCH_BUFFER_TIME = 10 * 1000l;
@@ -154,6 +160,8 @@ public class KinesisConnectorConfiguration {
     public final String CLOUDWATCH_NAMESPACE;
     public final long CLOUDWATCH_BUFFER_TIME;
     public final int CLOUDWATCH_MAX_QUEUE_SIZE;
+    public String MONGODB_URI;
+    public String MONGODB_COLLECTION;
 
     /**
      * Configure the connector application with any set of properties that are unique to the application. Any
@@ -202,6 +210,10 @@ public class KinesisConnectorConfiguration {
         // DynamoDB configuration
         DYNAMODB_ENDPOINT = properties.getProperty(PROP_DYNAMODB_ENDPOINT, DEFAULT_DYNAMODB_ENDPOINT);
         DYNAMODB_DATA_TABLE_NAME = properties.getProperty(PROP_DYNAMODB_DATA_TABLE_NAME, DEFAULT_DYNAMODB_DATA_TABLE_NAME);
+
+        // MongoDB configuration
+        MONGODB_URI = properties.getProperty(PROP_MONGODB_URI, DEFAULT_MONGODB_URI);
+        MONGODB_COLLECTION = properties.getProperty(PROP_MONGODB_COLLECTION, DEFAULT_MONGODB_COLLECTION);
 
         // CloudWatch configuration
         CLOUDWATCH_NAMESPACE = properties
